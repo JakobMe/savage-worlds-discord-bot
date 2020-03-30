@@ -1,6 +1,7 @@
 import { Message } from 'discord.js';
 import { clear } from './clear';
 import { hilfe } from './hilfe';
+import { ini } from './ini';
 import { probe } from './probe';
 import { schaden } from './schaden';
 import { wurf } from './wurf';
@@ -27,6 +28,12 @@ export function executeCommand(message: Message): void {
     case 'schaden': {
       const [type, modificator] = args;
       const { reply } = schaden(type, modificator, comment);
+      message.reply(reply);
+      break;
+    }
+    case 'ini': {
+      const [opponents] = args;
+      const { reply } = ini(message.mentions, opponents);
       message.reply(reply);
       break;
     }

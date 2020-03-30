@@ -6,6 +6,7 @@ const COMMENT_CHARS = /"/g;
 const COMMENT_REGEX = /"(.*)"/g;
 const OPTIONS_REGEX = /--(\D+) +(\w+)/g;
 const PREFIX_REGEX = /^!/;
+const MENTION_REGEX = /<@!(.*)>/g;
 
 export function parseMessage(message: Message): Command {
   const { content, author } = message;
@@ -20,6 +21,7 @@ export function parseMessage(message: Message): Command {
   const [command, ...args] = input
     .replace(COMMENT_REGEX, '')
     .replace(OPTIONS_REGEX, '')
+    .replace(MENTION_REGEX, '')
     .toLowerCase()
     .split(/ +/);
 
