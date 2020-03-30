@@ -8,6 +8,7 @@ export function hilfe(): CommandOutput {
       '📄 Hilfe anzeigen: `!hilfe`',
       '🎲 Würfelwurf: `!wurf <würfel> [mod] ["text"]`',
       '🧰 Probenwurf: `!probe <würfel> [mod] [--ziel <wert>] [--wild <ja|nein>] ["text"]`',
+      '💀 Schadenswurf: `!schaden <würfel> [mod] ["text"]`',
       '❌ Nachrichten löschen (nur Admin): `!clear [anzahl]`',
       '',
       'Hier ein paar __Beispiele__:',
@@ -17,6 +18,8 @@ export function hilfe(): CommandOutput {
       '`!probe 1w6 "Heimlichkeit"`',
       '`!probe 2w10 +2 --ziel 6 "Kämpfen"`',
       '`!probe 1w4 --wild nein`',
+      '`!schaden 2w8 +2 "Schuss"`',
+      '`!schaden 1w6,1w4 +2 "Axt"`',
       '`!clear 4`'
     ].join('\n')
   };

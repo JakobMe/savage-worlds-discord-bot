@@ -1,5 +1,3 @@
-import { Probe } from '../interfaces/probe.interface';
-
 const EMOJIS = {
   0: ':zero:',
   1: ':one:',
@@ -14,6 +12,6 @@ const EMOJIS = {
   10: ':keycap_ten:'
 };
 
-export function getRaiseEmoji({ raises, success }: Probe): string {
-  return raises === 0 && !success ? ':regional_indicator_n:' : EMOJIS[raises] ?? ':arrow_up:';
+export function getRaiseEmoji(raises: number, success: boolean): string {
+  return raises === 0 && !success ? ':x:' : EMOJIS[raises] ?? ':arrow_up:';
 }

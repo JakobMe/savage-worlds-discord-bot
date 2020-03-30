@@ -22,7 +22,7 @@ function getDiscarded(results: Probe[]): [Probe, Probe[]] {
     : [null, results];
 }
 
-export function evaluateResults(results: Probe[]): ProbeEvaluation {
+export function getProbeEvaluation(results: Probe[]): ProbeEvaluation {
   const slipped = hasSlipped(results);
   const [discarded, selected] = getDiscarded(results);
   return { slipped, selected, discarded };
