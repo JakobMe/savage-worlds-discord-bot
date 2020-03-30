@@ -1,0 +1,49 @@
+{
+  "name": "sw-bot",
+  "version": "1.0.0",
+  "description": "Discord Chatbot für Savage Worlds",
+  "author": "Jakob Metzger <jakob.me@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "engines": {
+    "node": ">=13.0.0",
+    "npm": ">=6.13.0"
+  },
+  "main": "src/index.js",
+  "scripts": {
+    "start": "ts-node src/index",
+    "prettier": "prettier --write 'src/**/*.{js,ts,json}'",
+    "lint": "eslint 'src/**/*.{js,ts,json}'"
+  },
+  "dependencies": {
+    "discord.js": "12.0.2",
+    "moment": "2.24.0"
+  },
+  "devDependencies": {
+    "@types/node": "13.9.5",
+    "@typescript-eslint/eslint-plugin": "2.25.0",
+    "@typescript-eslint/parser": "2.25.0",
+    "eslint": "6.8.0",
+    "prettier": "2.0.2",
+    "ts-node": "8.8.1",
+    "typescript": "3.8.3"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "printWidth": 100,
+    "trailingComma": "none",
+    "arrowParens": "avoid"
+  },
+  "eslintConfig": {
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/eslint-recommended",
+      "plugin:@typescript-eslint/recommended"
+    ]
+  }
+}
