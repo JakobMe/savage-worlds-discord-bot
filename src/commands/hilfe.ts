@@ -9,7 +9,7 @@ export function hilfe(): CommandOutput {
       '🎲 Würfelwurf: `!wurf <würfel> [mod] ["text"]`',
       '🧰 Probenwurf: `!probe <würfel> [mod] [--ziel <wert>] [--wild <ja|nein>] ["text"]`',
       '💀 Schadenswurf: `!schaden <würfel> [mod] ["text"]`',
-      '🃏 Initiavekarten: `!ini <gegner> <@spieler>`',
+      '🃏 Initiavekarten: `!ini [@spieler] [gegner]`',
       '❌ Nachrichten löschen (nur Admin): `!clear [anzahl]`',
       '',
       'Hier ein paar __Beispiele__:',
@@ -21,7 +21,7 @@ export function hilfe(): CommandOutput {
       '`!probe 1w4 --wild nein`',
       '`!schaden 2w8 +2 "Schuss"`',
       '`!schaden 1w6,1w4 +2 "Axt"`',
-      '`!ini 3 @Spieler1 @Spieler2`',
+      '`!ini @Spieler1 @Spieler2 3`',
       '`!clear 4`'
     ].join('\n')
   };

@@ -5,9 +5,9 @@ import { CommandOutput } from '../interfaces/command.interface';
 import { toInteger } from '../utils/toInteger';
 import { getError } from '../utils/getError';
 
-const PLAYERS_MIN = 1;
+const PLAYERS_MIN = 0;
 const PLAYERS_MAX = 10;
-const ENEMIES_MIN = 1;
+const ENEMIES_MIN = 0;
 const ENEMIES_MAX = 20;
 
 export function ini(mentions: MessageMentions, opponents: string): CommandOutput {
@@ -23,6 +23,10 @@ export function ini(mentions: MessageMentions, opponents: string): CommandOutput
     {
       condition: enemies < ENEMIES_MIN || enemies > ENEMIES_MAX,
       reply: `die Anzahl der Gegner muss zwischen ${ENEMIES_MIN} und ${ENEMIES_MAX} liegen.`
+    },
+    {
+      condition: players === 0 && enemies === 0,
+      reply: 'erwähne entweder Spieler oder gib die Anzahl der Gegner an.'
     }
   ]);
 
