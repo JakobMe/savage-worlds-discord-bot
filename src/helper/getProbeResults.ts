@@ -1,4 +1,5 @@
 import { Probe } from '../interfaces/probe.interface';
+import { clamp } from '../utils/clamp';
 import { explodeRoll } from '../utils/explodeRoll';
 import { getRaises } from '../utils/getRaises';
 import { sumNumbers } from '../utils/sumNumbers';
@@ -15,7 +16,7 @@ export function getProbeResults(
 
   return sequence.map((die, i) => {
     const rolls = explodeRoll(die);
-    const sum = sumNumbers(rolls, mod);
+    const sum = clamp(sumNumbers(rolls, mod), 0, Infinity);
 
     return {
       index: i + 1,
