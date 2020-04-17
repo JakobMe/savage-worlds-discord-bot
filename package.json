@@ -22,11 +22,14 @@
   },
   "devDependencies": {
     "@types/colors": "1.2.1",
+    "@types/jest": "25.2.1",
     "@types/node": "13.9.5",
     "@typescript-eslint/eslint-plugin": "2.25.0",
     "@typescript-eslint/parser": "2.25.0",
     "eslint": "6.8.0",
+    "jest": "25.3.0",
     "prettier": "2.0.2",
+    "ts-jest": "25.3.1",
     "ts-node": "8.8.1",
     "typescript": "3.8.3"
   },
@@ -35,6 +38,29 @@
     "printWidth": 100,
     "trailingComma": "none",
     "arrowParens": "avoid"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "verbose": true,
+    "collectCoverageFrom": [
+      "src/classes/**/*.ts",
+      "src/commands/**/*.ts",
+      "src/utils/**/*.ts"
+    ],
+    "roots": [
+      "<rootDir>/test",
+      "<rootDir>/src"
+    ],
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "testRegex": "^.+\\.spec.ts",
+    "moduleFileExtensions": [
+      "ts",
+      "js",
+      "json",
+      "node"
+    ]
   },
   "eslintConfig": {
     "root": true,
