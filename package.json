@@ -5,6 +5,10 @@
   "author": "Jakob Metzger <jakob.me@gmail.com>",
   "license": "MIT",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JakobMe/savage-worlds-discord-bot.git"
+  },
   "engines": {
     "node": ">=13.0.0",
     "npm": ">=6.13.0"
