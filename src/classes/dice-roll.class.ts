@@ -13,7 +13,7 @@ export class DiceRoll {
   public static readonly DICE_MAX = 20;
   public static readonly TYPES_MAX = 5;
 
-  public static getProps(input: string, modificator?: string, explode = false): DiceRollProps {
+  public static getProps(input: string, modificator: string, explode: boolean): DiceRollProps {
     const { expression, dice, sequence } = DiceRoll.parse(input);
     const mod = NumberUtils.parse(modificator);
 

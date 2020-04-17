@@ -16,9 +16,7 @@ function userIsAdmin(member: GuildMember): boolean {
 }
 
 function getUsername(user: User): string {
-  return user.bot
-    ? user.username
-    : user?.presence?.member?.displayName ?? user?.username ?? 'unbekannt';
+  return user.bot ? user.username : user.presence?.member.displayName ?? user.username;
 }
 
 function getTimestamp(): string {
