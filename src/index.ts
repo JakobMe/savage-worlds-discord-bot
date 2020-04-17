@@ -1,7 +1,7 @@
 import { Client } from 'discord.js';
-import { discordConfig } from './config/discord.config';
+import { config } from 'dotenv';
 import { Program } from './classes/program.class';
 
+config();
 const bot = new Client();
-const token = discordConfig.token;
-new Program(bot, token).start();
+new Program(bot, process.env.DISCORD_TOKEN).start();
