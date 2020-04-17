@@ -31,7 +31,7 @@ describe('MetaUtils', () => {
   test('logToConsole should log to console', () => {
     const user = mockUser();
     const log = mockLog();
-    MetaUtils.log(user, 'message');
+    MetaUtils.log(user.tag, 'message');
     expect(log).toHaveBeenCalled();
     resetMockLog();
   });

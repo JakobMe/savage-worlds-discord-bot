@@ -95,6 +95,6 @@ export abstract class Command {
 
   private log(): void {
     const { author, content } = this.message;
-    MetaUtils.log(author, content);
+    MetaUtils.log(author.tag, content);
   }
 }

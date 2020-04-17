@@ -1,9 +1,7 @@
-import { Client, User } from 'discord.js';
 import { Express, Response } from 'express';
 import MetaUtils from '../utils/meta.utils';
 
 export class Server {
-  private readonly bot: Client;
   private readonly express: Express;
   private readonly port: string;
 
@@ -22,7 +20,6 @@ export class Server {
   }
 
   private log(): void {
-    const user = ({ tag: 'Server#0000' } as unknown) as User;
-    MetaUtils.log(user, `Listening on Port ${this.port}...`);
+    MetaUtils.log('Server#0000', `Listening on Port ${this.port}...`);
   }
 }

@@ -1,13 +1,5 @@
 import { gray, green, blue, red } from 'colors';
-import {
-  ClientUser,
-  User,
-  Client,
-  TextChannel,
-  DMChannel,
-  NewsChannel,
-  GuildMember
-} from 'discord.js';
+import { User, Client, TextChannel, DMChannel, NewsChannel, GuildMember } from 'discord.js';
 import moment from 'moment';
 import { templates } from '../classes/templates.class';
 
@@ -23,9 +15,9 @@ function getTimestamp(): string {
   return moment().format('DD.MM.YYYY HH:mm:ss');
 }
 
-function logToConsole(user: ClientUser | User, message: string, error = false): void {
+function logToConsole(user: string, message: string, error = false): void {
   const timestamp = gray(`[${getTimestamp()}]`);
-  const username = blue(user.tag);
+  const username = blue(user);
   const content = (error ? red : green)(`> ${message}`);
   console.log(`${timestamp}\t${username}\t\t ${content}`);
 }
@@ -39,7 +31,7 @@ export async function handleException(
   const error = `${err.name}: ${err.message}`;
   const reply = templates.render('misc/exception', { error });
 
-  logToConsole(bot.user, error, true);
+  logToConsole(bot.user.tag, error, true);
 
   await channel.send(reply);
   bot.destroy();

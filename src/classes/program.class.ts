@@ -26,7 +26,7 @@ export class Program {
     });
 
     this.bot.on('ready', () => {
-      MetaUtils.log(this.bot.user, 'I am ready!');
+      MetaUtils.log(this.bot.user.tag, 'I am ready!');
     });
   }
 
