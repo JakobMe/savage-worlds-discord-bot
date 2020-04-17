@@ -7,8 +7,8 @@ Alle Würfel können explodieren, erlaubt sind W4, W6, W8, W10 und W12.
 
 Optionen:
 
-  !ziel <wert>    Alternativer Zielwert               # (Standard:  4)
-  !wild <wert>    Wildcard-Würfel benutzen ja/nein    # (Standard: ja)
+  !ziel <wert>    Alternativer Zielwert               (Standard:  4)
+  !wild <wert>    Wildcard-Würfel benutzen ja/nein    (Standard: ja)
 
 Beispiele:
 
