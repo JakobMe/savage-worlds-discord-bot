@@ -3,7 +3,7 @@ import { mockChannel } from './channel.mock';
 import { mockMember } from './member.mock';
 import { mockUser } from './user.mock';
 
-export const mockMessage = (content: string, admin = true, tag = 'user'): Message =>
+export const mockMessage = (content: string, admin = true, tag = 'user', mentions = 0): Message =>
   (({
     content,
     channel: mockChannel(),
@@ -13,7 +13,7 @@ export const mockMessage = (content: string, admin = true, tag = 'user'): Messag
     send: jest.fn().mockResolvedValue(null),
     mentions: {
       users: {
-        array: (): User[] => [mockUser(tag)]
+        array: (): User[] => [...Array(mentions).keys()].map(() => mockUser(tag))
       }
     }
   } as unknown) as Message);

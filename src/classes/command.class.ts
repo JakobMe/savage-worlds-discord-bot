@@ -1,4 +1,4 @@
-import { Message, MessageOptions } from 'discord.js';
+import { Message } from 'discord.js';
 import { templates } from './templates.class';
 import { CommandOption, CommandProps } from '../interfaces/command.interface';
 import { TemplateData } from '../interfaces/template.interface';
@@ -13,7 +13,6 @@ export abstract class Command {
   protected readonly message: Message;
   protected readonly command: string;
   protected readonly args: string[];
-  protected readonly query: string;
   protected readonly user: string;
   protected readonly mentions: string[];
   protected readonly options: CommandOption[];
@@ -23,11 +22,10 @@ export abstract class Command {
   }
 
   constructor(message: Message) {
-    const { command, args, query, user, options, mentions } = this.parseMessage(message);
+    const { command, args, user, options, mentions } = this.parseMessage(message);
     this.message = message;
     this.command = command;
     this.args = args;
-    this.query = query;
     this.user = user;
     this.mentions = mentions;
     this.options = options;
@@ -38,10 +36,6 @@ export abstract class Command {
 
   protected reply(template: string | string[], data?: TemplateData): Promise<Message> {
     return this.message.reply(this.render(template, data));
-  }
-
-  protected send(options: MessageOptions): Promise<Message> {
-    return this.message.channel.send(options);
   }
 
   protected render(template: string | string[], data?: TemplateData): string {
@@ -73,7 +67,6 @@ export abstract class Command {
       command,
       mentions,
       args: this.parseArgs(input),
-      query: this.parseQuery(input),
       options: this.parseOptions(input)
     };
   }
@@ -94,10 +87,6 @@ export abstract class Command {
       .replace(Command.REGEX_OPTIONS, '')
       .trim()
       .split(Command.REGEX_SPLIT);
-  }
-
-  private parseQuery(input: string): string {
-    return [...input.matchAll(Command.REGEX_QUERY)][0]?.[1] ?? '';
   }
 
   private log(): void {

@@ -1,6 +1,5 @@
 export interface CommandProps {
   user: string;
-  query: string;
   args: string[];
   command: string;
   mentions: string[];
