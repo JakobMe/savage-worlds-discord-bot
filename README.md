@@ -23,7 +23,7 @@ https://discordapp.com/api/oauth2/authorize?client_id=xyz&permissions=10240&scop
 Zunächst müssen die Dependencies installiert werden:
 
 ```bash
-$ cd sw-bot
+$ cd savage-worlds-discord-bot
 $ npm install
 ```
 
