@@ -32,10 +32,11 @@ describe('CheckUtils', () => {
     const arr3 = ([{ sum: 1 }, { sum: 0 }, { sum: 0 }] as unknown) as DiceRollItem[];
     const arr4 = ([{ sum: 5 }] as unknown) as DiceRollItem[];
 
-    expect(CheckUtils.getDiscarded(arr1)).toBe(2);
-    expect(CheckUtils.getDiscarded(arr2)).toBe(0);
-    expect(CheckUtils.getDiscarded(arr3)).toBe(1);
-    expect(CheckUtils.getDiscarded(arr4)).toBe(null);
+    expect(CheckUtils.getDiscarded(arr1, true)).toBe(2);
+    expect(CheckUtils.getDiscarded(arr1, false)).toBe(null);
+    expect(CheckUtils.getDiscarded(arr2, true)).toBe(0);
+    expect(CheckUtils.getDiscarded(arr3, true)).toBe(1);
+    expect(CheckUtils.getDiscarded(arr4, true)).toBe(null);
   });
 
   test('getSuccesses should return correct values', () => {

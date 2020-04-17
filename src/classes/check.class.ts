@@ -24,7 +24,7 @@ export class Check {
     const mod = NumberUtils.parse(modificator);
     const goal = NumberUtils.parse(target, 4);
     const wildcard = Check.ALLOWED_WILD[(wild ?? 'ja').toLowerCase()] ?? null;
-    const { valid, dice } = DiceRoll.getProps(type);
+    const { valid, dice } = DiceRoll.getProps(type, modificator, false);
     const [n, m] = dice[0];
 
     return {
@@ -63,8 +63,8 @@ export class Check {
   }
 
   private getItems(items: DiceRollItem[]): CheckItem[] {
-    const { mod, goal } = this.props;
-    const discarded = CheckUtils.getDiscarded(items);
+    const { mod, goal, wildcard } = this.props;
+    const discarded = CheckUtils.getDiscarded(items, wildcard);
 
     return items.map(({ die, rolls, explode, sum: total }, i) => {
       const sum = total + mod;

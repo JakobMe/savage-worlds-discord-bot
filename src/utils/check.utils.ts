@@ -10,9 +10,9 @@ function getRaises(total: number, goal: number): number {
   return Math.max(0, Math.floor((total - goal) / 4));
 }
 
-function getDiscarded(items: DiceRollItem[]): number {
+function getDiscarded(items: DiceRollItem[], wildcard: boolean): number {
   const [min] = NumberUtils.min(items.map(i => i.sum));
-  return items.length <= 1 ? null : items.findIndex(i => i.sum === min);
+  return !wildcard || items.length <= 1 ? null : items.findIndex(i => i.sum === min);
 }
 
 function getSuccesses(items: CheckItem[]): { successes: number; emoji: string } {
