@@ -1,1 +1,1 @@
-erwähne mindestens einen Spieler oder gib mindestens einen Gegner an :robot:
+erwähne mindestens einen Spieler oder gib mindestens einen Gegner an :robot: —
