@@ -1,3 +1,4 @@
+import { damageConfig } from '../config/damage.config';
 import { DiceRoll } from './dice-roll.class';
 import { DamageProps, DamageResult, DamageItem } from '../interfaces/damage.interface';
 import { DiceRollItem, DiceRollResult } from '../interfaces/dice-roll.interface';
@@ -29,24 +30,6 @@ export class Damage {
   }
 
   private getEmoji(sum: number): string {
-    if (sum >= 24) {
-      return ':skull:';
-    } else if (sum >= 20) {
-      return ':fire:';
-    } else if (sum >= 16) {
-      return ':axe:';
-    } else if (sum >= 12) {
-      return ':crossed_swords:';
-    } else if (sum >= 8) {
-      return ':dagger:';
-    } else if (sum >= 6) {
-      return ':boxing_glove:';
-    } else if (sum >= 4) {
-      return ':punch:';
-    } else if (sum >= 2) {
-      return ':cat:';
-    } else {
-      return ':poop:';
-    }
+    return damageConfig.find(({ min, max }) => sum <= max && sum >= min).emoji;
   }
 }
