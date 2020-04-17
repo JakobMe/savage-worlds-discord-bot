@@ -1,4 +1,5 @@
 import { Express, Response } from 'express';
+import path from 'path';
 import MetaUtils from '../utils/meta.utils';
 
 export class Server {
@@ -16,10 +17,10 @@ export class Server {
   }
 
   private respond(res: Response<string>): void {
-    res.send("Beep boop I'm a Discord bot 🤖");
+    res.sendFile(path.join(__dirname + '/../index.html'));
   }
 
   private log(): void {
-    MetaUtils.log('Server#0000', `Listening on Port ${this.port}...`);
+    MetaUtils.log(`Server#${this.port}`, `Listening on port ${this.port}!`);
   }
 }
