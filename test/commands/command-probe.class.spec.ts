@@ -3,7 +3,7 @@ import { mockMessage } from '../mocks/message.mock';
 import { resetMockRandom, mockRandom } from '../mocks/random.mock';
 import { CommandProbe } from '../../src/commands/command-probe.class';
 
-describe('CommandSchaden', () => {
+describe('CommandProbe', () => {
   mockLogForEach();
 
   it('should reply on success', () => {
