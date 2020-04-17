@@ -1,0 +1,1 @@
+`{{index}}`. `1w{{die}}` — {{emoji}} `Σ {{sum}}` {{outcome}}, gewürfelt: `{{rolls}}`

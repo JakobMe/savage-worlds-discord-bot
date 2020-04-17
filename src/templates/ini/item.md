@@ -1,0 +1,1 @@
+`{{index}}`. `{{value}}` — {{emoji}} {{name}} `{{label}}` {{icon}}

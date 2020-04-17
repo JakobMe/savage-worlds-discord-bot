@@ -1,0 +1,1 @@
+es sind maximal {{dice}} Würfel und ein Modifikator von {{mod}} erlaubt, der Zielwert muss zwischen {{min}} und {{max}} liegen und Wildcard muss "ja" oder "nein" sein :robot:

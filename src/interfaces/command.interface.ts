@@ -1,21 +1,14 @@
-export interface Command {
+export interface CommandProps {
   user: string;
-  command: string;
+  query: string;
   args: string[];
-  comment: string;
+  command: string;
+  mentions: string[];
   options: CommandOption[];
 }
 
 export interface CommandOption {
-  expression: string;
+  input: string;
   key: string;
   value: string;
-}
-
-export interface CommandOutput {
-  reply: string;
-}
-
-export interface CommandError extends CommandOutput {
-  condition: boolean;
 }

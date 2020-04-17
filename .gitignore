@@ -1,2 +1,4 @@
+.vscode/
 node_modules/
-src/config.json
+coverage/
+src/config/discord.config.ts
