@@ -9,6 +9,7 @@ export abstract class Command {
   private static readonly REGEX_NAME = /^!([a-z]+)/;
   private static readonly REGEX_QUERY = /"([\wäöüß: ]+)"/i;
   private static readonly REGEX_OPTIONS = /!([a-zA-Z]+) +([\w+-]+)/g;
+  private static readonly REGEX_MENTIONS = /<@!.*>/g;
 
   protected readonly message: Message;
   protected readonly command: string;
@@ -59,8 +60,11 @@ export abstract class Command {
   private parseMessage(message: Message): CommandProps {
     const user = message.author.tag;
     const command = Command.getCommandName(message);
-    const input = message.content.replace(Command.REGEX_NAME, '').trim();
     const mentions = message.mentions.users.array().map(user => MetaUtils.username(user));
+    const input = message.content
+      .replace(Command.REGEX_NAME, '')
+      .replace(Command.REGEX_MENTIONS, '')
+      .trim();
 
     return {
       user,
