@@ -22,7 +22,7 @@ export abstract class Command {
     return message.content.match(Command.REGEX_NAME)?.[1] ?? 'none';
   }
 
-  constructor(message: Message, url?: string) {
+  constructor(message: Message) {
     const { command, args, user, options, mentions } = this.parseMessage(message);
     this.message = message;
     this.command = command;
@@ -30,8 +30,6 @@ export abstract class Command {
     this.user = user;
     this.mentions = mentions;
     this.options = options;
-
-    this.ping(url);
     this.log();
   }
 
@@ -98,11 +96,5 @@ export abstract class Command {
   private log(): void {
     const { author, content } = this.message;
     MetaUtils.log(author.tag, content);
-  }
-
-  private ping(url: string): void {
-    if (url) {
-      MetaUtils.ping(url);
-    }
   }
 }

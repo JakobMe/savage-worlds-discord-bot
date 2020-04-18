@@ -8,11 +8,9 @@ export class Program {
   private readonly url: string;
   private channel: TextChannel | DMChannel | NewsChannel;
 
-  constructor(bot: Client, token: string, url: string) {
+  constructor(bot: Client, token: string) {
     this.bot = bot;
     this.token = token;
-    this.url = url;
-
     this.initBotListeners();
     this.initProcessListeners();
   }
@@ -23,7 +21,7 @@ export class Program {
 
   private initBotListeners(): void {
     this.bot.on('message', (message: Message) => {
-      const { command } = new CommandFactory(message, this.url);
+      const { command } = new CommandFactory(message);
       this.channel = message.channel;
       command?.execute();
     });

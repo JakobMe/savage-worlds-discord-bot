@@ -10,25 +10,25 @@ import { CommandWurf } from '../commands/command-wurf.class';
 export class CommandFactory {
   public readonly command: Command;
 
-  constructor(message: Message, url: string) {
+  constructor(message: Message) {
     switch (Command.getCommandName(message)) {
       case 'clear':
-        this.command = new CommandClear(message, url);
+        this.command = new CommandClear(message);
         break;
       case 'hilfe':
-        this.command = new CommandHilfe(message, url);
+        this.command = new CommandHilfe(message);
         break;
       case 'ini':
-        this.command = new CommandIni(message, url);
+        this.command = new CommandIni(message);
         break;
       case 'probe':
-        this.command = new CommandProbe(message, url);
+        this.command = new CommandProbe(message);
         break;
       case 'schaden':
-        this.command = new CommandSchaden(message, url);
+        this.command = new CommandSchaden(message);
         break;
       case 'wurf':
-        this.command = new CommandWurf(message, url);
+        this.command = new CommandWurf(message);
         break;
       default:
         this.command = null;
