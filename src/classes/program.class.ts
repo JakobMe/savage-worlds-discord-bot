@@ -5,7 +5,6 @@ import MetaUtils from '../utils/meta.utils';
 export class Program {
   private readonly bot: Client;
   private readonly token: string;
-  private readonly url: string;
   private channel: TextChannel | DMChannel | NewsChannel;
 
   constructor(bot: Client, token: string) {
