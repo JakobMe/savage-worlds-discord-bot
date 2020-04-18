@@ -1,6 +1,6 @@
 import { gray, green, blue, red } from 'colors';
 import { Client, TextChannel, DMChannel, NewsChannel, GuildMember } from 'discord.js';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import { templates } from '../classes/templates.class';
 
 function userIsAdmin(member: GuildMember): boolean {
@@ -8,7 +8,7 @@ function userIsAdmin(member: GuildMember): boolean {
 }
 
 function getTimestamp(): string {
-  return moment().format('DD.MM.YYYY HH:mm:ss');
+  return moment().tz('Europe/Berlin').format('DD.MM.YYYY HH:mm:ss');
 }
 
 function logToConsole(user: string, message: string, error = false): void {
