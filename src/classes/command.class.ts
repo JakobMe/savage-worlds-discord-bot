@@ -60,7 +60,7 @@ export abstract class Command {
   private parseMessage(message: Message): CommandProps {
     const user = message.author.tag;
     const command = Command.getCommandName(message);
-    const mentions = message.mentions.users.array().map(user => MetaUtils.username(user));
+    const mentions = message.mentions.members.array().map(({ displayName }) => displayName);
     const input = message.content
       .replace(Command.REGEX_NAME, '')
       .replace(Command.REGEX_MENTIONS, '')

@@ -14,15 +14,6 @@ describe('MetaUtils', () => {
     expect(isAdmin).toBe(true);
   });
 
-  test('getUsername should return correct username', () => {
-    const user1 = mockUser();
-    const user2 = mockUser('user', true);
-    const user3 = mockUser('user', false, true);
-    expect(MetaUtils.username(user1)).toBe('Testuser');
-    expect(MetaUtils.username(user2)).toBe('Testuser');
-    expect(MetaUtils.username(user3)).toBe('Testmember');
-  });
-
   test('getTimestamp should return correctly formatted string', () => {
     const timestamp = MetaUtils.timestamp();
     expect(timestamp).toMatch(/\d\d\.\d\d\.\d\d\d\d \d\d:\d\d:\d\d/);

@@ -1,14 +1,10 @@
 import { gray, green, blue, red } from 'colors';
-import { User, Client, TextChannel, DMChannel, NewsChannel, GuildMember } from 'discord.js';
+import { Client, TextChannel, DMChannel, NewsChannel, GuildMember } from 'discord.js';
 import moment from 'moment';
 import { templates } from '../classes/templates.class';
 
 function userIsAdmin(member: GuildMember): boolean {
   return member.hasPermission('ADMINISTRATOR');
-}
-
-function getUsername(user: User): string {
-  return user.bot ? user.username : user.presence?.member.displayName ?? user.username;
 }
 
 function getTimestamp(): string {
@@ -42,8 +38,7 @@ const MetaUtils = {
   timestamp: getTimestamp,
   log: logToConsole,
   exception: handleException,
-  isAdmin: userIsAdmin,
-  username: getUsername
+  isAdmin: userIsAdmin
 };
 
 export default MetaUtils;
