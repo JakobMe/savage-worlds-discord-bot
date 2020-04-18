@@ -2,8 +2,7 @@ so funktioniert der Befehl `clear` :x:
 ```console
 > !clear [anzahl]
 
-Löscht die letzten Textnachrichten im aktuellen Channel (bis zu 100 auf einmal).
-Nur von Administratoren ausführbar.
+Löscht die letzten Textnachrichten im aktuellen Channel (bis zu 100 auf einmal). Nur von Administratoren ausführbar.
 
 Beispiele:
 

@@ -2,8 +2,7 @@ so funktioniert der Befehl `schaden` :skull:
 ```console
 > !schaden <würfel> [mod]
 
-Würfelt eine bestimmte Anzahl und Typen an Würfeln und summiert den Gesamtschaden auf.
-Alle Würfel können explodieren, erlaubt sind W2, W3, W4, W6, W8, W10, W12, W20 und W100.
+Würfelt eine bestimmte Anzahl und Typen an Würfeln und summiert den Gesamtschaden auf. Alle Würfel können explodieren, erlaubt sind W2, W3, W4, W6, W8, W10, W12, W20 und W100.
 
 Beispiele:
 

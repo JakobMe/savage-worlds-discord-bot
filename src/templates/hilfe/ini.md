@@ -2,8 +2,7 @@ so funktioniert der Befehl `ini` :black_joker:
 ```console
 > !ini [@spieler...] [gegner]
 
-Zieht für alle erwähnten Spieler und die angegebene Anzahl von Gegnern Poker-Karten, um die Initiative-Reihenfolge zu bestimmen.
-Es muss mindestens ein Spieler erwähnt oder ein Gegner angegeben werden.
+Zieht für alle erwähnten Spieler und die angegebene Anzahl von Gegnern Poker-Karten, um die Initiative-Reihenfolge zu bestimmen. Es muss mindestens ein Spieler erwähnt oder ein Gegner angegeben werden.
 
 Beispiele:
 

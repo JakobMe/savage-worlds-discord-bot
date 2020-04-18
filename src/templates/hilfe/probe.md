@@ -2,8 +2,7 @@ so funktioniert der Befehl `probe` :dart:
 ```console
 > !probe <würfel> [mod] [optionen]
 
-Würfelt eine Probe mit den angegebenen Würfeln auf den Zielwert 4, inklusive Wildcard-Würfel.
-Alle Würfel können explodieren, erlaubt sind W4, W6, W8, W10 und W12.
+Würfelt eine Probe mit den angegebenen Würfeln auf den Zielwert 4, inklusive Wildcard-Würfel. Alle Würfel können explodieren, erlaubt sind W4, W6, W8, W10 und W12.
 
 Optionen:
 
