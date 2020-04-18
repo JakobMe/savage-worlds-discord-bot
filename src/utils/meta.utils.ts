@@ -15,7 +15,7 @@ function logToConsole(user: string, message: string, error = false): void {
   const timestamp = gray(`[${getTimestamp()}]`);
   const username = blue(user);
   const content = (error ? red : green)(`> ${message}`);
-  console.log(`${timestamp}\t${username}\t\t ${content}`);
+  console.log(`${timestamp} ${username} ${content}`);
 }
 
 async function handleException(
