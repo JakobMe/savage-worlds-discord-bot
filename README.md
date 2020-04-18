@@ -61,3 +61,11 @@ $ npm test
 $ npm run test:watch
 $ npm run test:coverage
 ```
+
+## Deployment
+
+Der Bot ist für ein Deployment auf [Heroku](https://www.heroku.com) konzipiert, kann jedoch prinzipiell auf jeder Plattform deployed werden.
+
+Folge der [offiziellen Anleitung](https://devcenter.heroku.com/articles/getting-started-with-nodejs) von Heroku und erstelle eine neue App für den Bot.
+
+Die Datei `Procfile` konfiguriert einen Heroku `worker` Dyno; stelle deine App auf diesen Dyno Typen um und deaktiviere den Standard `web` Dyno. Jetzt muss nur noch der Discord-Token als Umgebungsvariable `DISCORD_TOKEN` in Heroku hinterlegt werden und der Bot sollte sich nach dem Deployment automatisch auf deinem Discord Server einloggen.
