@@ -7,5 +7,5 @@ import { Server } from './classes/server.class';
 config();
 const bot = new Client();
 
-new Program(bot, process.env.DISCORD_TOKEN).start();
+new Program(bot, process.env.DISCORD_TOKEN, process.env.PING_URL).start();
 new Server(express(), process.env.PORT ?? '3000').start();

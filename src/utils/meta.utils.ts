@@ -1,6 +1,7 @@
 import { gray, green, blue, red } from 'colors';
 import { User, Client, TextChannel, DMChannel, NewsChannel, GuildMember } from 'discord.js';
 import moment from 'moment';
+import https from 'https';
 import { templates } from '../classes/templates.class';
 
 function userIsAdmin(member: GuildMember): boolean {
@@ -22,7 +23,7 @@ function logToConsole(user: string, message: string, error = false): void {
   console.log(`${timestamp}\t${username}\t\t ${content}`);
 }
 
-export async function handleException(
+async function handleException(
   err: Error,
   bot: Client,
   token: string,
@@ -38,12 +39,17 @@ export async function handleException(
   bot.login(token);
 }
 
+function pingUrl(url: string): void {
+  https.get(url);
+}
+
 const MetaUtils = {
   timestamp: getTimestamp,
   log: logToConsole,
   exception: handleException,
   isAdmin: userIsAdmin,
-  username: getUsername
+  username: getUsername,
+  ping: pingUrl
 };
 
 export default MetaUtils;

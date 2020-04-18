@@ -1,3 +1,4 @@
+import https from 'https';
 import { mockBot } from '../mocks/bot.mock';
 import { mockChannel } from '../mocks/channel.mock';
 import { mockError } from '../mocks/error.mock';
@@ -34,6 +35,12 @@ describe('MetaUtils', () => {
     MetaUtils.log(user.tag, 'message');
     expect(log).toHaveBeenCalled();
     resetMockLog();
+  });
+
+  test('pingUrl should get url', () => {
+    const get = jest.spyOn(https, 'get');
+    MetaUtils.ping('https://www.google.com');
+    expect(get).toHaveBeenCalledWith('https://www.google.com');
   });
 
   test('handleException should call channel and bot functions', async () => {

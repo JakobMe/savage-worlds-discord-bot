@@ -5,11 +5,14 @@ import MetaUtils from '../utils/meta.utils';
 export class Program {
   private readonly bot: Client;
   private readonly token: string;
+  private readonly url: string;
   private channel: TextChannel | DMChannel | NewsChannel;
 
-  constructor(bot: Client, token: string) {
+  constructor(bot: Client, token: string, url: string) {
     this.bot = bot;
     this.token = token;
+    this.url = url;
+
     this.initBotListeners();
     this.initProcessListeners();
   }
@@ -20,7 +23,7 @@ export class Program {
 
   private initBotListeners(): void {
     this.bot.on('message', (message: Message) => {
-      const { command } = new CommandFactory(message);
+      const { command } = new CommandFactory(message, this.url);
       this.channel = message.channel;
       command?.execute();
     });
