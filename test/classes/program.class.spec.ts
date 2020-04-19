@@ -10,7 +10,7 @@ describe('Program', () => {
 
     new Program(bot, 'token').start();
 
-    expect(mockProcess).toHaveBeenCalledTimes(2);
+    expect(mockProcess).toHaveBeenCalledTimes(3);
     expect(bot.on).toHaveBeenCalledTimes(2);
     expect(bot.login).toHaveBeenCalled();
     expect(log).toHaveBeenCalledWith(expect.stringMatching('I am ready'));
@@ -29,7 +29,7 @@ describe('Program', () => {
   });
 
   it('should logout when process ends', () => {
-    mockLog();
+    const log = mockLog();
     const bot = mockBot();
     const mockProcess = jest.spyOn(process, 'on').mockImplementation((event, listener) => {
       listener('resolve', null, null);
@@ -39,6 +39,8 @@ describe('Program', () => {
     new Program(bot, 'token').start();
 
     expect(bot.destroy).toHaveBeenCalled();
+    expect(log).toHaveBeenCalledWith(expect.stringMatching('I am logging out'));
+
     mockProcess.mockClear();
     resetMockLog();
   });

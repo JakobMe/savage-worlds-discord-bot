@@ -18,6 +18,11 @@ export class Program {
     this.bot.login(this.token);
   }
 
+  private exit(): void {
+    this.bot.destroy();
+    this.log('I am logging out!');
+  }
+
   private initBotListeners(): void {
     this.bot.on('message', (message: Message) => {
       const { command } = new CommandFactory(message);
@@ -26,17 +31,25 @@ export class Program {
     });
 
     this.bot.on('ready', () => {
-      MetaUtils.log(this.bot.user.tag, 'I am ready!');
+      this.log('I am ready!');
     });
   }
 
   private initProcessListeners(): void {
     process.on('SIGINT', () => {
-      this.bot.destroy();
+      this.exit();
+    });
+
+    process.on('exit', () => {
+      this.exit();
     });
 
     process.on('uncaughtException', (error: Error) => {
       MetaUtils.exception(error, this.bot, this.token, this.channel);
     });
+  }
+
+  private log(message: string): void {
+    MetaUtils.log(this.bot.user.tag, message);
   }
 }
