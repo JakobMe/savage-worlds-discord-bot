@@ -24,29 +24,23 @@ export class Program {
   }
 
   private initBotListeners(): void {
-    this.bot.on('message', (message: Message) => {
-      const { command } = new CommandFactory(message);
-      this.channel = message.channel;
-      command?.execute();
-    });
-
-    this.bot.on('ready', () => {
-      this.log('I am ready!');
-    });
+    this.bot
+      .on('ready', () => this.log('I am ready!'))
+      .on('message', (message: Message) => {
+        const { command } = new CommandFactory(message);
+        this.channel = message.channel;
+        command?.execute();
+      });
   }
 
   private initProcessListeners(): void {
-    process.on('SIGINT', () => {
-      this.exit();
-    });
-
-    process.on('exit', () => {
-      this.exit();
-    });
-
-    process.on('uncaughtException', (error: Error) => {
-      MetaUtils.exception(error, this.bot, this.token, this.channel);
-    });
+    process
+      .on('exit', () => this.exit())
+      .on('SIGINT', () => this.exit())
+      .on('SIGTERM', () => this.exit())
+      .on('uncaughtException', (error: Error) => {
+        MetaUtils.exception(error, this.bot, this.token, this.channel);
+      });
   }
 
   private log(message: string): void {

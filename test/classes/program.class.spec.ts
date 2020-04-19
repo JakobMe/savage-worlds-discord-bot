@@ -4,17 +4,18 @@ import { mockLog, resetMockLog } from '../mocks/log.mock';
 
 describe('Program', () => {
   it('should initialize listeners and login bot', () => {
-    const mockProcess = jest.spyOn(process, 'on');
+    const mockProcessOn = jest.spyOn(process, 'on');
     const log = mockLog();
     const bot = mockBot();
 
     new Program(bot, 'token').start();
 
-    expect(mockProcess).toHaveBeenCalledTimes(3);
     expect(bot.on).toHaveBeenCalledTimes(2);
-    expect(bot.login).toHaveBeenCalled();
+    expect(bot.login).toHaveBeenCalledTimes(1);
+    expect(mockProcessOn).toHaveBeenCalledTimes(4);
     expect(log).toHaveBeenCalledWith(expect.stringMatching('I am ready'));
-    mockProcess.mockClear();
+
+    mockProcessOn.mockClear();
     resetMockLog();
   });
 
@@ -31,9 +32,9 @@ describe('Program', () => {
   it('should logout when process ends', () => {
     const log = mockLog();
     const bot = mockBot();
-    const mockProcess = jest.spyOn(process, 'on').mockImplementation((event, listener) => {
+    const mockProcessOn = jest.spyOn(process, 'on').mockImplementation((event, listener) => {
       listener('resolve', null, null);
-      return (null as unknown) as NodeJS.Process;
+      return process;
     });
 
     new Program(bot, 'token').start();
@@ -41,23 +42,23 @@ describe('Program', () => {
     expect(bot.destroy).toHaveBeenCalled();
     expect(log).toHaveBeenCalledWith(expect.stringMatching('I am logging out'));
 
-    mockProcess.mockClear();
+    mockProcessOn.mockClear();
     resetMockLog();
   });
 
   it('should log error on exception', () => {
     const log = mockLog();
     const bot = mockBot();
-    const mockProcess = jest.spyOn(process, 'on').mockImplementation((event, listener) => {
+    const mockProcessOn = jest.spyOn(process, 'on').mockImplementation((event, listener) => {
       const value = ({ name: 'Error', message: 'Test' } as unknown) as NodeJS.MultipleResolveType;
       listener(value, null, null);
-      return (null as unknown) as NodeJS.Process;
+      return process;
     });
 
     new Program(bot, 'token').start();
     expect(log).toHaveBeenCalledWith(expect.stringMatching('Error: Test'));
 
-    mockProcess.mockClear();
+    mockProcessOn.mockClear();
     resetMockLog();
   });
 });
