@@ -27,7 +27,7 @@ export class Check {
   ): CheckProps {
     const mod = NumberUtils.parse(modificator);
     const goal = NumberUtils.parse(target, 4);
-    const wildcard = this.isWildcard(wild ?? 'ja');
+    const wildcard = NumberUtils.parse(wild ?? 6, -1);
     const { valid, dice } = DiceRoll.getProps(type, modificator, false);
     const [n, m] = dice[0];
 
@@ -39,8 +39,8 @@ export class Check {
       wildcard,
       modificator: NumberUtils.sign(mod),
       reason: this.getReason(query),
-      allowed: this.isAllowed(mod, goal, n, wildcard),
-      valid: this.isValid(valid, m)
+      allowed: this.isAllowed(mod, goal, n),
+      valid: this.isValid(valid, m, wildcard)
     };
   }
 
@@ -57,7 +57,7 @@ export class Check {
       };
     }
 
-    const dice = wildcard ? `1w6,${n}w${m}` : `${n}w${m}`;
+    const dice = this.getDice(n, m, wildcard);
     const { result, props } = new DiceRoll(dice, '0', true);
     const { expression } = props;
     const items = this.getItems(result.items);
@@ -84,22 +84,25 @@ export class Check {
     });
   }
 
-  private isAllowed(mod: number, goal: number, n: number, wildcard: boolean): boolean {
+  private isAllowed(mod: number, goal: number, n: number): boolean {
     return (
       Math.abs(mod) <= Check.MOD_MAX &&
       n <= Check.DICE_MAX &&
       goal <= Check.GOAL_MAX &&
-      goal >= Check.GOAL_MIN &&
-      wildcard !== null
+      goal >= Check.GOAL_MIN
     );
   }
 
-  private isValid(valid: boolean, m: number): boolean {
-    return valid && !!m.toString().match(/^(4|6|8|10|12)$/);
+  private isValid(valid: boolean, m: number, wildcard: number): boolean {
+    return (
+      valid &&
+      !!m.toString().match(/^(4|6|8|10|12)$/) &&
+      !!wildcard.toString().match(/^(0|4|6|8|10|12)$/)
+    );
   }
 
-  private isWildcard(wild: string): boolean {
-    return wild.match(/ja/i) ? true : wild.match(/nein/i) ? false : null;
+  private getDice(n: number, m: number, wildcard: number): string {
+    return wildcard > 0 ? `1w${wildcard},${n}w${m}` : `${n}w${m}`;
   }
 
   private getReason(query: string): string {

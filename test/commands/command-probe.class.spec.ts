@@ -7,10 +7,18 @@ describe('CommandProbe', () => {
   mockLogForEach();
 
   it('should reply on success', () => {
-    const message = mockMessage('!probe 2w6 +2 "Athletik" !wild nein');
+    const message = mockMessage('!probe w8');
     new CommandProbe(message).execute();
     expect(message.reply).toHaveBeenCalledWith(
-      expect.stringMatching('Ergebnisse deiner Probe für "Athletik"')
+      expect.stringMatching('Ergebnisse deiner Probe mit 1w6 und 1w8')
+    );
+  });
+
+  it('should reply on success with complex command', () => {
+    const message = mockMessage('!probe 2w6 +2 "Athletik" !wild 4 !ziel 3');
+    new CommandProbe(message).execute();
+    expect(message.reply).toHaveBeenCalledWith(
+      expect.stringMatching('Ergebnisse deiner Probe für "Athletik" mit 1w4 und 2w6')
     );
   });
 

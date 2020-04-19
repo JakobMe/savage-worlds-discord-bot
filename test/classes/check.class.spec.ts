@@ -47,21 +47,33 @@ describe('Check', () => {
       modificator: '±0',
       reason: 'Probe',
       goal: 4,
-      wildcard: true,
+      wildcard: 6,
       valid: true,
       allowed: true
     });
   });
 
   it('should be valid with correct extended input', () => {
-    const { result, props } = new Check('2w10', '2', '2', 'nein', 'Athletik');
+    const { result, props } = new Check('2w10', '2', '2', '4', 'Athletik');
 
     expect(result).toEqual({
-      expression: '2w10',
+      expression: '1w4 und 2w10',
       fumble: false,
       successes: 2,
       emoji: ':white_check_mark:',
       items: [
+        {
+          die: 4,
+          success: true,
+          fumble: false,
+          explode: false,
+          discard: true,
+          outcome: expect.stringMatching('Aussortiert'),
+          sum: 5,
+          raises: 0,
+          rolls: [3],
+          emoji: ':zero:'
+        },
         {
           die: 10,
           success: true,
@@ -96,7 +108,7 @@ describe('Check', () => {
       modificator: '+2',
       reason: 'Probe für "Athletik"',
       goal: 2,
-      wildcard: false,
+      wildcard: 4,
       valid: true,
       allowed: true
     });
@@ -105,7 +117,7 @@ describe('Check', () => {
   it('should be valid with correct input and explode', () => {
     mockRandom([0.99, 0.99, 0.5]);
 
-    const { result, props } = new Check('w6', '', '', 'nein', 'Überreden');
+    const { result, props } = new Check('w6', '', '', '0', 'Überreden');
 
     expect(result).toEqual({
       expression: '1w6',
@@ -135,7 +147,7 @@ describe('Check', () => {
       modificator: '±0',
       reason: 'Probe für "Überreden"',
       goal: 4,
-      wildcard: false,
+      wildcard: 0,
       valid: true,
       allowed: true
     });
@@ -186,7 +198,7 @@ describe('Check', () => {
       modificator: '±0',
       reason: 'Probe',
       goal: 4,
-      wildcard: true,
+      wildcard: 6,
       valid: true,
       allowed: true
     });
@@ -210,7 +222,31 @@ describe('Check', () => {
       modificator: '±0',
       reason: 'Probe',
       goal: 4,
-      wildcard: true,
+      wildcard: 6,
+      valid: false,
+      allowed: true
+    });
+  });
+
+  it('should be invalid with incorrect wildcard', () => {
+    const { result, props } = new Check('w6', '', '', 'abc');
+
+    expect(result).toEqual({
+      expression: '',
+      fumble: false,
+      successes: 0,
+      emoji: '',
+      items: []
+    });
+
+    expect(props).toEqual({
+      n: 1,
+      m: 6,
+      mod: 0,
+      modificator: '±0',
+      reason: 'Probe',
+      goal: 4,
+      wildcard: -1,
       valid: false,
       allowed: true
     });
@@ -234,7 +270,31 @@ describe('Check', () => {
       modificator: '±0',
       reason: 'Probe',
       goal: 4,
-      wildcard: true,
+      wildcard: 6,
+      valid: false,
+      allowed: true
+    });
+  });
+
+  it('should be invalid with excluded wildcard', () => {
+    const { result, props } = new Check('w6', '', '', '20');
+
+    expect(result).toEqual({
+      expression: '',
+      fumble: false,
+      successes: 0,
+      emoji: '',
+      items: []
+    });
+
+    expect(props).toEqual({
+      n: 1,
+      m: 6,
+      mod: 0,
+      modificator: '±0',
+      reason: 'Probe',
+      goal: 4,
+      wildcard: 20,
       valid: false,
       allowed: true
     });
@@ -258,31 +318,7 @@ describe('Check', () => {
       modificator: '+21',
       reason: 'Probe',
       goal: 30,
-      wildcard: true,
-      valid: true,
-      allowed: false
-    });
-  });
-
-  it('should be disallowed with invalid wild', () => {
-    const { result, props } = new Check('w6', '', '', 'abc');
-
-    expect(result).toEqual({
-      expression: '',
-      fumble: false,
-      successes: 0,
-      emoji: '',
-      items: []
-    });
-
-    expect(props).toEqual({
-      n: 1,
-      m: 6,
-      mod: 0,
-      modificator: '±0',
-      reason: 'Probe',
-      goal: 4,
-      wildcard: null,
+      wildcard: 6,
       valid: true,
       allowed: false
     });
