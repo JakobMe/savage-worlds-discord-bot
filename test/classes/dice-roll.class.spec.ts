@@ -33,7 +33,7 @@ describe('DiceRoll', () => {
   });
 
   it('should be valid with correct extended input', () => {
-    const { result, props } = new DiceRoll('2w6,8', '6');
+    const { result, props } = new DiceRoll('2w6,w8', '6');
 
     expect(result).toEqual({
       sum: 19,
@@ -78,7 +78,7 @@ describe('DiceRoll', () => {
   it('should be valid with correct input and explode', () => {
     mockRandom([0.99, 0.99, 0.5, 0.99, 0.5, 0.5]);
 
-    const { result, props } = new DiceRoll('1w6,4,w3', '', true);
+    const { result, props } = new DiceRoll('1w6,w4,w3', '', true);
 
     expect(result).toEqual({
       sum: 25,

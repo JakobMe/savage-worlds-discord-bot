@@ -6,7 +6,7 @@ describe('CommandSchaden', () => {
   mockLogForEach();
 
   it('should reply on success', () => {
-    const message = mockMessage('!schaden 2w6,1w4 +2');
+    const message = mockMessage('!schaden 2w6,w4 +2');
     new CommandSchaden(message).execute();
     expect(message.reply).toHaveBeenCalledWith(
       expect.stringMatching('Ergebnisse deines Schadenswurfs')

@@ -35,7 +35,7 @@ describe('Damage', () => {
   });
 
   it('should be valid with correct extended input', () => {
-    const { result, props } = new Damage('2w6,8', '4');
+    const { result, props } = new Damage('2w6,w8', '4');
 
     expect(result).toEqual({
       sum: 17,

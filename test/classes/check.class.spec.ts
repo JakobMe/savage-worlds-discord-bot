@@ -105,7 +105,7 @@ describe('Check', () => {
   it('should be valid with correct input and explode', () => {
     mockRandom([0.99, 0.99, 0.5]);
 
-    const { result, props } = new Check('6', '', '', 'nein', 'Überreden');
+    const { result, props } = new Check('w6', '', '', 'nein', 'Überreden');
 
     expect(result).toEqual({
       expression: '1w6',
@@ -144,10 +144,10 @@ describe('Check', () => {
   it('should be valid with correct input and fumble', () => {
     mockRandom(0);
 
-    const { result, props } = new Check('w6');
+    const { result, props } = new Check('w10');
 
     expect(result).toEqual({
-      expression: '1w6 und 1w6',
+      expression: '1w6 und 1w10',
       fumble: true,
       successes: 0,
       emoji: ':x:',
@@ -165,7 +165,7 @@ describe('Check', () => {
           emoji: ':x:'
         },
         {
-          die: 6,
+          die: 10,
           success: false,
           fumble: true,
           explode: false,
@@ -181,7 +181,7 @@ describe('Check', () => {
 
     expect(props).toEqual({
       n: 1,
-      m: 6,
+      m: 10,
       mod: 0,
       modificator: '±0',
       reason: 'Probe',
@@ -265,7 +265,7 @@ describe('Check', () => {
   });
 
   it('should be disallowed with invalid wild', () => {
-    const { result, props } = new Check('6', '', '', 'abc');
+    const { result, props } = new Check('w6', '', '', 'abc');
 
     expect(result).toEqual({
       expression: '',
