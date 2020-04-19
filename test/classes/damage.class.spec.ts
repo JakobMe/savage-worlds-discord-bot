@@ -35,7 +35,7 @@ describe('Damage', () => {
   });
 
   it('should be valid with correct extended input', () => {
-    const { result, props } = new Damage('2w6,1w8', '4');
+    const { result, props } = new Damage('2w6,8', '4');
 
     expect(result).toEqual({
       sum: 17,
@@ -84,7 +84,7 @@ describe('Damage', () => {
   it('should be valid with correct input and explode', () => {
     mockRandom([0.99, 0.99, 0.5]);
 
-    const { result, props } = new Damage('1w6');
+    const { result, props } = new Damage('w6');
 
     expect(result).toEqual({
       sum: 16,

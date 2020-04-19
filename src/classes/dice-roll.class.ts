@@ -84,11 +84,11 @@ export class DiceRoll {
   private static parse(input: string): DiceRollParsed {
     const { expressions, sequence, dice } = (input ?? '').split(',').reduce(
       ({ expressions, sequence, dice }, die) => {
-        const [expression, dieN, dieM] = die.match(/(\d+)w(\d+)/i) ?? [];
-        const n = NumberUtils.parse(dieN);
-        const m = NumberUtils.parse(dieM);
+        const [original, dieN, dieM] = die.match(/^(\d+)?w?(\d+)$/i) ?? [];
+        const n = NumberUtils.parse(dieN, 1);
+        const m = NumberUtils.parse(dieM, 0);
         const s = new Array<number>(n).fill(m);
-        const e = (expression ?? '').toLowerCase();
+        const e = original ? `${n}w${m}` : '';
 
         return {
           dice: [...dice, [n, m]],
