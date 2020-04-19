@@ -62,7 +62,6 @@ export abstract class Command {
   private parseMessage(message: Message): CommandProps {
     const user = message.author.tag;
     const command = Command.getCommandName(message);
-    const mentions = message.mentions.members.array().map(({ displayName }) => displayName);
     const input = message.content
       .replace(Command.REGEX_NAME, '')
       .replace(Command.REGEX_MENTIONS, '')
@@ -71,7 +70,7 @@ export abstract class Command {
     return {
       user,
       command,
-      mentions,
+      mentions: this.getMentions(message),
       args: this.parseArgs(input),
       query: this.parseQuery(input),
       options: this.parseOptions(input)
@@ -98,6 +97,13 @@ export abstract class Command {
 
   private parseQuery(input: string): string {
     return [...input.matchAll(Command.REGEX_QUERY)][0]?.[1] ?? '';
+  }
+
+  private getMentions(message: Message): string[] {
+    const { users, members } = message.mentions;
+    return members
+      ? members.array().map(({ displayName }) => displayName)
+      : users.array().map(({ username }) => username);
   }
 
   private log(): void {

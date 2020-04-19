@@ -40,4 +40,10 @@ describe('CommandIni', () => {
     new CommandIni(message).execute();
     expect(message.reply).toHaveBeenCalledWith(expect.stringMatching('es dürfen maximal'));
   });
+
+  it('should reply on direct message', () => {
+    const message = mockMessage('!ini', false, 'user', 4, true);
+    new CommandIni(message).execute();
+    expect(message.reply).toHaveBeenCalledWith(expect.stringMatching('für 4 Spieler'));
+  });
 });
