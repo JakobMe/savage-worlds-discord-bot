@@ -4,7 +4,7 @@ import moment from 'moment-timezone';
 import { templates } from '../classes/templates.class';
 
 function userIsAdmin(message: Message): boolean {
-  return message.member?.hasPermission('ADMINISTRATOR') || message.channel.type === 'dm';
+  return message.member?.hasPermission('ADMINISTRATOR') === true;
 }
 
 function getTimestamp(): string {

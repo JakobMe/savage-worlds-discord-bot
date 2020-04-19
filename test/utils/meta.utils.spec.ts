@@ -17,7 +17,7 @@ describe('MetaUtils', () => {
   test('userIsAdmin should return correct value in direct message', () => {
     const message = mockMessage('', true, 'user', 0, true);
     const isAdmin = MetaUtils.isAdmin(message);
-    expect(isAdmin).toBe(true);
+    expect(isAdmin).toBe(false);
   });
 
   test('getTimestamp should return correctly formatted string', () => {
