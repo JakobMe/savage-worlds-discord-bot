@@ -28,8 +28,8 @@ export class Program {
     this.bot
       .on('ready', () => this.log('I am ready!'))
       .on('message', (message: Message) => {
-        const { command } = new CommandFactory(message);
         this.channel = message.channel;
+        const { command } = new CommandFactory(message);
         command?.execute();
       });
   }
