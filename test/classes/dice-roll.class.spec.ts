@@ -33,11 +33,11 @@ describe('DiceRoll', () => {
   });
 
   it('should be valid with correct extended input', () => {
-    const { result, props } = new DiceRoll('2w6,w8', '6');
+    const { result, props } = new DiceRoll('2w6/w8/10', '6');
 
     expect(result).toEqual({
-      sum: 19,
-      rolls: [4, 4, 5],
+      sum: 25,
+      rolls: [4, 4, 5, 6],
       items: [
         {
           die: 6,
@@ -56,6 +56,12 @@ describe('DiceRoll', () => {
           rolls: [5],
           explode: false,
           sum: 5
+        },
+        {
+          die: 10,
+          rolls: [6],
+          explode: false,
+          sum: 6
         }
       ]
     });
@@ -63,15 +69,16 @@ describe('DiceRoll', () => {
     expect(props).toEqual({
       dice: [
         [2, 6],
-        [1, 8]
+        [1, 8],
+        [1, 10]
       ],
-      sequence: [6, 6, 8],
+      sequence: [6, 6, 8, 10],
       mod: 6,
       explode: false,
       valid: true,
       allowed: true,
       modificator: '+6',
-      expression: '2w6 und 1w8'
+      expression: '2w6, 1w8 und 1w10'
     });
   });
 
@@ -194,14 +201,14 @@ describe('DiceRoll', () => {
     });
 
     expect(props).toEqual({
-      dice: [[3, 5]],
-      sequence: [5, 5, 5],
+      dice: [[1, 0]],
+      sequence: [0],
       mod: 0,
       explode: false,
       valid: false,
       allowed: true,
       modificator: '±0',
-      expression: '3w5'
+      expression: ''
     });
   });
 

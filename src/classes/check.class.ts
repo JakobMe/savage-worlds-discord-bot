@@ -9,8 +9,6 @@ export class Check {
   public static readonly GOAL_MIN = 1;
   public static readonly GOAL_MAX = 20;
   public static readonly DICE_MAX = 10;
-  public static readonly ALLOWED_M = [4, 6, 8, 10, 12];
-  public static readonly ALLOWED_WILD = { ja: true, nein: false };
 
   public readonly props: CheckProps;
   public readonly result: CheckResult;
@@ -29,7 +27,7 @@ export class Check {
   ): CheckProps {
     const mod = NumberUtils.parse(modificator);
     const goal = NumberUtils.parse(target, 4);
-    const wildcard = Check.ALLOWED_WILD[(wild ?? 'ja').toLowerCase()] ?? null;
+    const wildcard = this.isWildcard(wild ?? 'ja');
     const { valid, dice } = DiceRoll.getProps(type, modificator, false);
     const [n, m] = dice[0];
 
@@ -39,8 +37,8 @@ export class Check {
       mod,
       goal,
       wildcard,
-      reason: this.getReason(query),
       modificator: NumberUtils.sign(mod),
+      reason: this.getReason(query),
       allowed: this.isAllowed(mod, goal, n, wildcard),
       valid: this.isValid(valid, m)
     };
@@ -97,7 +95,11 @@ export class Check {
   }
 
   private isValid(valid: boolean, m: number): boolean {
-    return valid && Check.ALLOWED_M.includes(m);
+    return valid && !!m.toString().match(/^(4|6|8|10|12)$/);
+  }
+
+  private isWildcard(wild: string): boolean {
+    return wild.match(/ja/i) ? true : wild.match(/nein/i) ? false : null;
   }
 
   private getReason(query: string): string {

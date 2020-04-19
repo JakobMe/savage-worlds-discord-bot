@@ -8,7 +8,6 @@ import NumberUtils from '../utils/number.utils';
 import StringUtils from '../utils/string.utils';
 
 export class DiceRoll {
-  public static readonly M_VALID = [2, 3, 4, 6, 8, 10, 12, 20, 100];
   public static readonly MOD_MAX = 100;
   public static readonly DICE_MAX = 20;
   public static readonly TYPES_MAX = 5;
@@ -70,7 +69,7 @@ export class DiceRoll {
   }
 
   private static isValid(dice: [number, number][]): boolean {
-    return dice.every(([n, m]) => n > 0 && m > 0 && DiceRoll.M_VALID.includes(m));
+    return dice.every(([n, m]) => n > 0 && m > 0);
   }
 
   private static isAllowed(dice: [number, number][], sequence: number[], mod: number): boolean {
@@ -82,18 +81,18 @@ export class DiceRoll {
   }
 
   private static parse(input: string): DiceRollParsed {
-    const { expressions, sequence, dice } = (input ?? '').split(',').reduce(
+    const { expressions, sequence, dice } = (input ?? '').split(/[,|/]/).reduce(
       ({ expressions, sequence, dice }, die) => {
-        const [original, dieN, dieM] = die.match(/^(\d+)?w(\d+)$/i) ?? [];
+        const [original, dieN, dieM] = die.match(/^(\d+)?w?(2|3|4|6|8|10|12|20|100)$/i) ?? [];
         const n = NumberUtils.parse(dieN, 1);
         const m = NumberUtils.parse(dieM, 0);
-        const s = new Array<number>(n).fill(m);
-        const e = original ? `${n}w${m}` : '';
+        const seq = new Array<number>(n).fill(m);
+        const exp = original ? `${n}w${m}` : '';
 
         return {
           dice: [...dice, [n, m]],
-          sequence: [...sequence, ...s],
-          expressions: [...expressions, e]
+          sequence: [...sequence, ...seq],
+          expressions: [...expressions, exp]
         };
       },
       {

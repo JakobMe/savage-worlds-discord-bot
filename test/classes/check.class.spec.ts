@@ -144,7 +144,7 @@ describe('Check', () => {
   it('should be valid with correct input and fumble', () => {
     mockRandom(0);
 
-    const { result, props } = new Check('w10');
+    const { result, props } = new Check('10');
 
     expect(result).toEqual({
       expression: '1w6 und 1w10',
@@ -229,7 +229,7 @@ describe('Check', () => {
 
     expect(props).toEqual({
       n: 1,
-      m: 9,
+      m: 0,
       mod: 0,
       modificator: '±0',
       reason: 'Probe',
