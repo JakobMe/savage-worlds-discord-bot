@@ -2,15 +2,21 @@ import { mockBot } from '../mocks/bot.mock';
 import { mockChannel } from '../mocks/channel.mock';
 import { mockError } from '../mocks/error.mock';
 import { mockLog, resetMockLog } from '../mocks/log.mock';
-import { mockMember } from '../mocks/member.mock';
 import { mockUser } from '../mocks/user.mock';
 import MetaUtils from '../../src/utils/meta.utils';
+import { mockMessage } from '../mocks/message.mock';
 
 describe('MetaUtils', () => {
-  test('userIsAdmin should call hasPermission of discord member', () => {
-    const member = mockMember();
-    const isAdmin = MetaUtils.isAdmin(member);
-    expect(member.hasPermission).toHaveBeenCalledWith('ADMINISTRATOR');
+  test('userIsAdmin should return correct value in text channel', () => {
+    const message = mockMessage('', true);
+    const isAdmin = MetaUtils.isAdmin(message);
+    expect(message.member.hasPermission).toHaveBeenCalledWith('ADMINISTRATOR');
+    expect(isAdmin).toBe(true);
+  });
+
+  test('userIsAdmin should return correct value in direct message', () => {
+    const message = mockMessage('', true, 'user', 0, true);
+    const isAdmin = MetaUtils.isAdmin(message);
     expect(isAdmin).toBe(true);
   });
 

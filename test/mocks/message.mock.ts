@@ -12,9 +12,9 @@ export const mockMessage = (
 ): Message =>
   (({
     content,
-    channel: mockChannel(),
+    channel: mockChannel(dm),
     author: mockUser(tag),
-    member: mockMember(admin),
+    member: dm ? null : mockMember(admin),
     reply: jest.fn().mockResolvedValue(null),
     send: jest.fn().mockResolvedValue(null),
     mentions: {

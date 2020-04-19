@@ -56,7 +56,7 @@ export abstract class Command {
   }
 
   protected get admin(): boolean {
-    return MetaUtils.isAdmin(this.message.member);
+    return MetaUtils.isAdmin(this.message);
   }
 
   private parseMessage(message: Message): CommandProps {

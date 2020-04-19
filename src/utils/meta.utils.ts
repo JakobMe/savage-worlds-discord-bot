@@ -1,10 +1,10 @@
 import { gray, green, blue, red } from 'colors';
-import { Client, TextChannel, DMChannel, NewsChannel, GuildMember } from 'discord.js';
+import { Client, TextChannel, DMChannel, NewsChannel, Message } from 'discord.js';
 import moment from 'moment-timezone';
 import { templates } from '../classes/templates.class';
 
-function userIsAdmin(member: GuildMember): boolean {
-  return member.hasPermission('ADMINISTRATOR');
+function userIsAdmin(message: Message): boolean {
+  return message.member?.hasPermission('ADMINISTRATOR') || message.channel.type === 'dm';
 }
 
 function getTimestamp(): string {
