@@ -5,10 +5,11 @@ import NumberUtils from '../utils/number.utils';
 
 export class CommandProbe extends Command {
   public execute(): void {
+    const { query } = this;
     const [type, mod] = this.args;
     const [target, wild] = this.getOptions(['ziel', 'wild']);
-    const { result, props } = new Check(type, mod, target, wild);
-    const { valid, allowed, modificator, goal } = props;
+    const { result, props } = new Check(type, mod, target, wild, query);
+    const { valid, allowed, modificator, goal, reason } = props;
     const { fumble, items, expression, successes, emoji } = result;
 
     if (!valid) {
@@ -30,6 +31,7 @@ export class CommandProbe extends Command {
       expression,
       modificator,
       goal,
+      reason,
       successes,
       emoji,
       items: this.getItems(items)

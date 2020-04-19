@@ -7,9 +7,11 @@ describe('CommandProbe', () => {
   mockLogForEach();
 
   it('should reply on success', () => {
-    const message = mockMessage('!probe 2w6 +2 !wild nein');
+    const message = mockMessage('!probe 2w6 +2 "Athletik" !wild nein');
     new CommandProbe(message).execute();
-    expect(message.reply).toHaveBeenCalledWith(expect.stringMatching('Ergebnisse deiner Probe'));
+    expect(message.reply).toHaveBeenCalledWith(
+      expect.stringMatching('Ergebnisse deiner Probe für "Athletik"')
+    );
   });
 
   it('should reply on fumble', () => {

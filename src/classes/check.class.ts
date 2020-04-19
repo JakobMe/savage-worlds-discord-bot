@@ -15,12 +15,18 @@ export class Check {
   public readonly props: CheckProps;
   public readonly result: CheckResult;
 
-  constructor(type: string, modificator?: string, target?: string, wild?: string) {
-    this.props = this.getProps(type, modificator, target, wild);
+  constructor(type: string, modificator?: string, target?: string, wild?: string, query?: string) {
+    this.props = this.getProps(type, modificator, target, wild, query);
     this.result = this.getResult();
   }
 
-  private getProps(type: string, modificator: string, target: string, wild: string): CheckProps {
+  private getProps(
+    type: string,
+    modificator: string,
+    target: string,
+    wild: string,
+    query: string
+  ): CheckProps {
     const mod = NumberUtils.parse(modificator);
     const goal = NumberUtils.parse(target, 4);
     const wildcard = Check.ALLOWED_WILD[(wild ?? 'ja').toLowerCase()] ?? null;
@@ -33,6 +39,7 @@ export class Check {
       mod,
       goal,
       wildcard,
+      reason: this.getReason(query),
       modificator: NumberUtils.sign(mod),
       allowed: this.isAllowed(mod, goal, n, wildcard),
       valid: this.isValid(valid, m)
@@ -91,5 +98,9 @@ export class Check {
 
   private isValid(valid: boolean, m: number): boolean {
     return valid && Check.ALLOWED_M.includes(m);
+  }
+
+  private getReason(query: string): string {
+    return query ? `Probe für "${query}"` : 'Probe';
   }
 }

@@ -1,4 +1,4 @@
-hier sind die Ergebnisse deiner Probe mit {{expression}} {{modificator}} auf den Zielwert {{goal}}:
+hier sind die Ergebnisse deiner {{reason}} mit {{expression}} {{modificator}} auf den Zielwert {{goal}}:
 
 {{items}}
 

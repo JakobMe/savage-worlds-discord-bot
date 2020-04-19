@@ -7,13 +7,14 @@ import MetaUtils from '../utils/meta.utils';
 export abstract class Command {
   private static readonly REGEX_SPLIT = / +/;
   private static readonly REGEX_NAME = /^!([a-z]+)/;
-  private static readonly REGEX_QUERY = /"([\wäöüß: ]+)"/i;
+  private static readonly REGEX_QUERY = /"(.*)"/i;
   private static readonly REGEX_OPTIONS = /!([a-zA-Z]+) +([\w+-]+)/g;
   private static readonly REGEX_MENTIONS = /<@!.*>/g;
 
   protected readonly message: Message;
   protected readonly command: string;
   protected readonly args: string[];
+  protected readonly query: string;
   protected readonly user: string;
   protected readonly mentions: string[];
   protected readonly options: CommandOption[];
@@ -23,10 +24,11 @@ export abstract class Command {
   }
 
   constructor(message: Message) {
-    const { command, args, user, options, mentions } = this.parseMessage(message);
+    const { command, args, query, user, options, mentions } = this.parseMessage(message);
     this.message = message;
     this.command = command;
     this.args = args;
+    this.query = query;
     this.user = user;
     this.mentions = mentions;
     this.options = options;
@@ -71,6 +73,7 @@ export abstract class Command {
       command,
       mentions,
       args: this.parseArgs(input),
+      query: this.parseQuery(input),
       options: this.parseOptions(input)
     };
   }
@@ -91,6 +94,10 @@ export abstract class Command {
       .replace(Command.REGEX_OPTIONS, '')
       .trim()
       .split(Command.REGEX_SPLIT);
+  }
+
+  private parseQuery(input: string): string {
+    return [...input.matchAll(Command.REGEX_QUERY)][0]?.[1] ?? '';
   }
 
   private log(): void {

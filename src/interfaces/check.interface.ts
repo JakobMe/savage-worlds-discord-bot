@@ -4,6 +4,7 @@ export interface CheckProps {
   mod: number;
   modificator: string;
   goal: number;
+  reason: string;
   wildcard: boolean;
   valid: boolean;
   allowed: boolean;

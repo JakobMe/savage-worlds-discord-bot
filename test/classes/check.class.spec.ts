@@ -45,6 +45,7 @@ describe('Check', () => {
       m: 8,
       mod: 0,
       modificator: '±0',
+      reason: 'Probe',
       goal: 4,
       wildcard: true,
       valid: true,
@@ -53,7 +54,7 @@ describe('Check', () => {
   });
 
   it('should be valid with correct extended input', () => {
-    const { result, props } = new Check('2w10', '2', '2', 'nein');
+    const { result, props } = new Check('2w10', '2', '2', 'nein', 'Athletik');
 
     expect(result).toEqual({
       expression: '2w10',
@@ -93,6 +94,7 @@ describe('Check', () => {
       m: 10,
       mod: 2,
       modificator: '+2',
+      reason: 'Probe für "Athletik"',
       goal: 2,
       wildcard: false,
       valid: true,
@@ -103,7 +105,7 @@ describe('Check', () => {
   it('should be valid with correct input and explode', () => {
     mockRandom([0.99, 0.99, 0.5]);
 
-    const { result, props } = new Check('6', '', '', 'nein');
+    const { result, props } = new Check('6', '', '', 'nein', 'Überreden');
 
     expect(result).toEqual({
       expression: '1w6',
@@ -131,6 +133,7 @@ describe('Check', () => {
       m: 6,
       mod: 0,
       modificator: '±0',
+      reason: 'Probe für "Überreden"',
       goal: 4,
       wildcard: false,
       valid: true,
@@ -181,6 +184,7 @@ describe('Check', () => {
       m: 6,
       mod: 0,
       modificator: '±0',
+      reason: 'Probe',
       goal: 4,
       wildcard: true,
       valid: true,
@@ -204,6 +208,7 @@ describe('Check', () => {
       m: 0,
       mod: 0,
       modificator: '±0',
+      reason: 'Probe',
       goal: 4,
       wildcard: true,
       valid: false,
@@ -227,6 +232,7 @@ describe('Check', () => {
       m: 9,
       mod: 0,
       modificator: '±0',
+      reason: 'Probe',
       goal: 4,
       wildcard: true,
       valid: false,
@@ -250,6 +256,7 @@ describe('Check', () => {
       m: 6,
       mod: 21,
       modificator: '+21',
+      reason: 'Probe',
       goal: 30,
       wildcard: true,
       valid: true,
@@ -273,6 +280,7 @@ describe('Check', () => {
       m: 6,
       mod: 0,
       modificator: '±0',
+      reason: 'Probe',
       goal: 4,
       wildcard: null,
       valid: true,
