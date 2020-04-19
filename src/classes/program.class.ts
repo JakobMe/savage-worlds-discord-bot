@@ -21,6 +21,7 @@ export class Program {
   private exit(): void {
     this.bot.destroy();
     this.log('I am logging out!');
+    process.removeAllListeners();
   }
 
   private initBotListeners(): void {
