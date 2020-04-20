@@ -42,46 +42,5 @@
     "jest": "25.4.0",
     "prettier": "2.0.4",
     "ts-jest": "25.4.0"
-  },
-  "prettier": {
-    "singleQuote": true,
-    "printWidth": 100,
-    "trailingComma": "none",
-    "arrowParens": "avoid"
-  },
-  "jest": {
-    "testEnvironment": "node",
-    "verbose": true,
-    "collectCoverageFrom": [
-      "src/classes/**/*.ts",
-      "src/commands/**/*.ts",
-      "src/utils/**/*.ts"
-    ],
-    "roots": [
-      "<rootDir>/test",
-      "<rootDir>/src"
-    ],
-    "transform": {
-      "^.+\\.ts$": "ts-jest"
-    },
-    "testRegex": "^.+\\.spec.ts",
-    "moduleFileExtensions": [
-      "ts",
-      "js",
-      "json",
-      "node"
-    ]
-  },
-  "eslintConfig": {
-    "root": true,
-    "parser": "@typescript-eslint/parser",
-    "plugins": [
-      "@typescript-eslint"
-    ],
-    "extends": [
-      "eslint:recommended",
-      "plugin:@typescript-eslint/eslint-recommended",
-      "plugin:@typescript-eslint/recommended"
-    ]
   }
 }
