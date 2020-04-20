@@ -10,8 +10,8 @@
     "url": "https://github.com/JakobMe/savage-worlds-discord-bot.git"
   },
   "engines": {
-    "node": ">=13.0.0",
-    "npm": ">=6.13.0"
+    "node": "~13.13.0",
+    "npm": "~6.14.0"
   },
   "main": "src/index.ts",
   "scripts": {
@@ -25,7 +25,7 @@
   "dependencies": {
     "@types/colors": "1.2.1",
     "@types/moment-timezone": "0.5.13",
-    "@types/node": "13.11.1",
+    "@types/node": "13.13.0",
     "colors": "1.4.0",
     "discord.js": "12.2.0",
     "dotenv": "8.2.0",
@@ -39,7 +39,7 @@
     "@typescript-eslint/eslint-plugin": "2.28.0",
     "@typescript-eslint/parser": "2.28.0",
     "eslint": "6.8.0",
-    "jest": "25.3.0",
+    "jest": "25.4.0",
     "prettier": "2.0.4",
     "ts-jest": "25.4.0"
   },
