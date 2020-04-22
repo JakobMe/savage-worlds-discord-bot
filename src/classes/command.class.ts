@@ -7,7 +7,7 @@ import MetaUtils from '../utils/meta.utils';
 export abstract class Command {
   private static readonly REGEX_SPLIT = / +/;
   private static readonly REGEX_NAME = /^!([a-z]+)/;
-  private static readonly REGEX_QUERY = /"(.*)"/i;
+  private static readonly REGEX_QUERY = /"(.*)"/gi;
   private static readonly REGEX_OPTIONS = /!([a-zA-Z]+) +([\w+-]+)/g;
   private static readonly REGEX_MENTIONS = /<@!.*>/g;
 
