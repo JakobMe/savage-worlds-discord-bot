@@ -72,7 +72,7 @@ export class Check {
     const discarded = CheckUtils.getDiscarded(items, wildcard);
 
     return items.map(({ die, rolls, explode, sum: total }, i) => {
-      const sum = total + mod;
+      const sum = NumberUtils.restrict(total + mod, 0, Infinity);
       const discard = i === discarded;
       const success = sum >= goal;
       const fumble = rolls[0] === 1;
